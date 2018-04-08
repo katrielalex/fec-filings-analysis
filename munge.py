@@ -35,6 +35,10 @@ def main(company_contributions, committees):
         'contribution_receipt_amount',
     ]]
     contribs['party'] = contribs['committee_id'].map(cid_to_party)
+    totals = contribs.groupby('committee_name')[
+        'contribution_receipt_amount'
+    ].sum().sort_values()
+    log.debug(f'Got {len(totals)} grouped contributions')
 
     log.info('Plotting')
     contribs.groupby('party').sum().plot.pie(y='contribution_receipt_amount')
