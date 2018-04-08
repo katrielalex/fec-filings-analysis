@@ -19,8 +19,8 @@ div {
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>twitter donations</title>
-  <meta name="description" content="donations by twitter to us politicians">
+  <title>{{ company.lower() }} donations</title>
+  <meta name="description" content="donations by {{ company.lower() }} to us politicians">
   <meta name="author" content="probably like someone famous">
 
   <!-- Mobile Specific Metas
@@ -50,14 +50,14 @@ div {
       <div class="one-half column" style="margin-top: 20%">
         <h2>
 	  <a href="/"><i class="fas fa-chevron-left"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	  <i class="fab fa-twitter"></i>
+	  <i class="fab fa-{{ company.lower() }}"></i>
 	</h2>
-        <p>Did you know that Twitter has a <abbr title="Political Action Committee">PAC</abbr> which donates money to various US candidates? Including:
+        <p>Did you know that {{ company.title() }} has a <abbr title="Political Action Committee">PAC</abbr> which donates money to various US candidates? Including:
 	  <ul>
-	    <li>$5000 to Mitch McConnell (yes, that one), who blocked Garland's nomination to the supreme court and then used the nuclear option to nominate Gorsuch. Oh, and he signed the Paris letter too.</li><li>$1000 to Bob Goodlatte, who sponsored SOPA and led the secret GOP effort to dismantle the Office of Congressional Ethics.</li>
+	    {% for donation in donations %}<li>{{ donation }}</li>{% endfor %}
 	  </ul>
 
-	  Find out more at the <a href="https://www.fec.gov/data/receipts/?two_year_transaction_period=2018&data_type=processed&contributor_name=C00548065&min_date=01%2F01%2F2017&max_date=04%2F08%2F2018">FEC website</a>, and tell your friends!
+	  Find out more at the <a href="{{ fec_url }}">FEC website</a>, and tell your friends!
 	</p>
       </div>
     </div>
@@ -67,3 +67,4 @@ div {
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
+
