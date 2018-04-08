@@ -7,6 +7,9 @@ import os
 import ruamel.yaml as yaml
 
 
+log = logging.getLogger("fec_analysis")
+
+
 def load(donations_path):
     with open(donations_path) as donations_yaml:
         donations = yaml.safe_load(donations_yaml)
@@ -21,6 +24,7 @@ def render(donations, template_path):
     ).get_template(filename)
 
     for company, info in donations.items():
+        log.info(f"rendering {len(info['donations'])} donations for {company}")
         template.stream(
             company=company,
             fec_url=info['url'],
