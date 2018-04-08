@@ -49,11 +49,9 @@ div {
     <div class="row">
       <div class="one-half column" style="margin-top: 20%">
         <h2>
-	  <a href="facebook.html"><i class="fab fa-facebook"></i></a>&ensp;
-	  <a href="google.html"><i class="fab fa-google"></i></a>&ensp;
-	  <a href="microsoft.html"><i class="fab fa-microsoft"></i></a>&ensp;
-	  <a href="twitter.html"><i class="fab fa-twitter"></i></a>&ensp;
-	  <a href="amazon.html"><i class="fab fa-amazon"></i></a>&ensp;
+	  {% for company in companies %}
+	  <a href="{{ company }}.html"><i class="fab fa-{{ company }}"></i></a>&ensp;
+	  {% endfor %}
 	  <!--<i class="fab fa-apple"></i>-->
 	</h2>
 	<p>

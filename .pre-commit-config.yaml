@@ -8,6 +8,5 @@ repos:
     - id: check-executables-have-shebangs
     - id: check-symlinks
     - id: end-of-file-fixer
-      exclude: template.jinja2
     - id: mixed-line-ending
     - id: trailing-whitespace

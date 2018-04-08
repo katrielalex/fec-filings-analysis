@@ -7,7 +7,7 @@ import os
 import ruamel.yaml as yaml
 
 
-log = logging.getLogger("fec_analysis")
+log = logging.getLogger('fec_analysis')
 
 
 def load(donations_path):
@@ -17,28 +17,32 @@ def load(donations_path):
     return donations
 
 
-def render(donations, template_path):
-    path, filename = os.path.split(template_path)
-    template = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(path or './')
-    ).get_template(filename)
+def render(donations):
+    loader = jinja2.FileSystemLoader('./')
+    environment = jinja2.Environment(loader=loader)
 
+    log.info('rendering index.html')
+    environment.get_template('index.jinja2').stream(
+        companies=sorted(donations.keys()),
+    ).dump('index.html')
+
+    log.info('rendering company pages')
+    company_page = environment.get_template('company_page.jinja2')
     for company, info in donations.items():
-        log.info(f"rendering {len(info['donations'])} donations for {company}")
-        template.stream(
+        log.info(f'rendering {len(info["donations"])} donations for {company}')
+        company_page.stream(
             company=company,
             fec_url=info['url'],
             donations=info['donations'],
-        ).dump(f"{company}.html")
+        ).dump(f'{company}.html')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("donations", help="yaml donations file")
-    parser.add_argument("template", help="html template")
+    parser.add_argument('donations', help='yaml donations file')
     args = parser.parse_args()
 
     donations = load(args.donations)
-    render(donations, args.template)
+    render(donations)
