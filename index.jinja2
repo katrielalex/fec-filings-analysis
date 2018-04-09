@@ -49,8 +49,8 @@ div {
     <div class="row">
       <div class="one-half column" style="margin-top: 20%">
         <h2>
-	  {% for company in companies %}
-	  <a href="{{ company }}.html"><i class="fab fa-{{ company }}"></i></a>&ensp;
+	  {% for company, logo in logos.items() %}
+	  <a href="{{ company }}.html">{{ logo }}</a>&ensp;
 	  {% endfor %}
 	  <!--<i class="fab fa-apple"></i>-->
 	</h2>
