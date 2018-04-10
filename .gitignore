@@ -1,11 +1,4 @@
-paypal.html
-cisco.html
-index.html
-amazon.html
-facebook.html
-google.html
-microsoft.html
-twitter.html
+*.html
 
 # Created by https://www.gitignore.io/api/python,emacs,vim
 
