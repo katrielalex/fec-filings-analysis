@@ -51,6 +51,7 @@ div {
         <h2>
 	  {% for company, logo in logos.items() %}
 	  <a href="{{ company }}.html">{{ logo }}</a>&ensp;
+	  {% if loop.index0 > 0 and not loop.index0 % 5 %} <br /> {% endif %}
 	  {% endfor %}
 	  <!--<i class="fab fa-apple"></i>-->
 	</h2>
