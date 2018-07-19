@@ -7,7 +7,36 @@ Shoo, hacker.
 <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/solid.js" integrity="sha384-P4tSluxIpPk9wNy8WSD8wJDvA8YZIkC6AQ+BfAFLXcUZIPQGu4Ifv4Kqq+i2XzrM" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/brands.js" integrity="sha384-qJKAzpOXfvmSjzbmsEtlYziSrpVjh5ROPNqb8UZ60myWy7rjTObnarseSKotmJIx" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/fontawesome.js" integrity="sha384-2IUdwouOFWauLdwTuAyHeMMRFfeyy4vqYNjodih+28v2ReC+8j+sLF9cK339k5hY" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="infinite-slider.css" rel="stylesheet">
 
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.customer-logos').slick({
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    arrows: false,
+    dots: false,
+    pauseOnHover: true,
+    responsive: [{
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 4
+      }
+    }, {
+      breakpoint: 520,
+      settings: {
+        slidesToShow: 3
+      }
+    }]
+  });
+});
+</script>
 <style type="text/css">
 div {
     text-align: justify;
@@ -49,11 +78,13 @@ div {
     <div class="row">
       <div class="one-half column" style="margin-top: 20%">
         <h2>
-	  {% for company, logo in logos.items() %}
-	  <a href="{{ company }}.html">{{ logo }}</a>&ensp;
-	  {% if loop.index0 > 0 and not loop.index0 % 5 %} <br /> {% endif %}
-	  {% endfor %}
-	  <!--<i class="fab fa-apple"></i>-->
+	  <div class="container">
+	    <section class="customer-logos slider">
+	      {% for company, logo in logos.items() %}
+	      <span class="slide"><a href="{{ company }}.html">{{ logo }}</a></span>&ensp;
+	      {% endfor %}
+	    </section>
+	  </div>
 	</h2>
 	<p>
 	  In the United States, <abbr title="Political Action Committees">PACs</abbr> are allowed to
