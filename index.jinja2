@@ -49,11 +49,11 @@ div {
     <div class="row">
       <div class="one-half column" style="margin-top: 20%">
         <h2>
+	  <ul>
 	  {% for company, logo in logos.items() %}
-	  <a href="{{ company }}.html">{{ logo }}</a>&ensp;
-	  {% if loop.index0 > 0 and not loop.index0 % 5 %} <br /> {% endif %}
+	  <li><a href="{{ company }}.html">{{ company }}</a></li>
 	  {% endfor %}
-	  <!--<i class="fab fa-apple"></i>-->
+	  </ul>
 	</h2>
 	<p>
 	  In the United States, <abbr title="Political Action Committees">PACs</abbr> are allowed to
